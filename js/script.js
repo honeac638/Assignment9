@@ -1,11 +1,13 @@
 console.log("script.js loaded");
-const endpoint = "https://api.giphy.com/v1/stickers/search?api_key=slu5oBBfMOwxAJvmbaYFef9ImRqdNmjd&q=chicken&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips";
 
 const gifContainer = document.querySelector("#gif-container");
 const fetchBtn = document.querySelector("#fetch-gif-btn");
-
+const searchInput = document.querySelector("#search-input");
 fetchBtn.addEventListener("click", function () {
+  const searchTerm = searchInput.value;
+  const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=slu5oBBfMOwxAJvmbaYFef9ImRqdNmjd&q=${searchTerm}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
   fetch(endpoint)
+
     .then(response => response.json())
     .then(data => {
       // Clear the container first
